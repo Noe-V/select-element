@@ -1,21 +1,27 @@
-# \<select-element\>
+<!--
+`select-element`
+Cuetem select element that allow yo to modify all styles to build a very different select, it is responsive so you can use
+in any place.
 
-Cuetem select element
+Example:
+```<select-element></select-element>```
 
-## Install the Polymer-CLI
+And you can use public property "options" to set an array with your custom options.
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
 
-## Viewing Your Element
+## Style
+You can uso some mixins to modify base styles:
 
-```
-$ polymer serve
-```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+| Mixin    | Description           |
+| ---------|:-------------:|
+| --selected-value | Main values |
+| --options-container | |
+| --options-hide | |
+| --options-show | |
+| --options-selected | |
+| --options-selected-hover | |
+| --selected-error | |
+| --selected-warning | |
+| --selected-success | |
+@demo demo/index.html
+-->

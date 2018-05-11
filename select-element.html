@@ -2,33 +2,140 @@
 
 <!--
 `select-element`
-Cuetem select element
+Cuetem select element that allow yo to modify all styles to build a very different select, it is responsive so you can use
+in any place.
 
+Example:
+```<select-element></select-element>```
+
+And you can use public property "options" to set an array with your custom options.
+
+
+## Style
+You can uso some mixins to modify base styles:
+
+| Mixin    | Description           |
+| ---------|:-------------:|
+| --selected-value | Main values |
+| --options-container | |
+| --options-hide | |
+| --options-show | |
+| --options-selected | |
+| --options-selected-hover | |
+| --selected-error | |
+| --selected-warning | |
+| --selected-success | |
 @demo demo/index.html
 -->
 
 <dom-module id="select-element">
-  <template>
+<template>
     <style>
       :host {
         display: block;
       }
+      .selected-value {
+        width: 100%;
+        display: block;
+        height: 2rem;
+        line-height:2rem;
+        padding-left: 1rem;
+        font-weight: bold;
+        background-color: azure;
+        cursor: pointer;
+        @apply --selected-value;
+      }
+      .options-container{
+        @apply --options-container;
+      }
+      .options-hide{
+        display: none;
+        @apply --options-hide;
+      }
+      .options-show{
+        display: block;
+        @apply --options-show;
+      }
+      .options-selected{
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        height: 2rem;
+        line-height:2rem;
+        padding-left: 1rem;
+        border-bottom: 3px solid azure;
+        @apply --options-selected;
+      }
+      .options-selected:hover{
+        background-color: azure;
+        @apply --options-selected-hover;
+      }
+      .error{
+        background-color: indianred;
+        @apply --selected-error
+      }
+      .warning {
+         background-color: lightyellow;
+        @apply --selected-warning
+      }
+      .success{
+        background-color: lightgreen;
+        @apply --selected-success
+      }
+
     </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <div class="select-container">
+      <span class="selected-value" on-tap="_showOptions">[[selected]]</span>
+        <div class$="[[display_options]] options-container">
+          <template is="dom-repeat" items="[[options]]">
+            <span class="options-selected " on-tap="_setSelected">[[item]]</span>
+          </template>
+        </div>
+    </div>
+</template>
 
   <script>
     Polymer({
 
       is: 'select-element',
-
       properties: {
-        prop1: {
-          type: String,
-          value: 'select-element',
+        /*
+        * Options to show on select element, default value is default
+        */
+        options: {
+          type: Array,
+          value: ['Default',2]
         },
+        /*
+        * Property to save selected value from options
+        */
+        selected: {
+          type: String,
+          value: "Default"
+        },
+        /*
+        * Property to show or hide options from select element
+        */
+        display_options:{
+          type: String,
+          value: 'options-hide'
+        }
       },
-
+      /*
+      * Private function to set selected value from options
+      */
+      _setSelected: function(data, detail){
+        this.setAttribute('selected', data.model.item);
+        this._showOptions();
+        this.fire('value-change', this.selected);
+      },
+      /*
+      * Private functions to show/hide options from select element
+      */
+      _showOptions: function(){
+        var showOptionsClass = (this.display_options == 'options-hide')?'options-show':'options-hide';
+        this.setAttribute('display_options', showOptionsClass);
+      }
     });
   </script>
 </dom-module>
