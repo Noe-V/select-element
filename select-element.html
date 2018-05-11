@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`select-element`
+Cuetem select element
+
+@demo demo/index.html
+-->
+
+<dom-module id="select-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'select-element',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'select-element',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
