@@ -19,10 +19,25 @@
     </test-fixture>
 
     <script>
+      var testOptions = ['1','2','3'];
+      var data = {
+        model :{
+          item : '1'
+        }
+      }
       suite('select-element', function() {
         test('instantiating the element works', function() {
           var element = fixture('basic');
           assert.equal(element.is, 'select-element');
+        });
+
+         test('Validate value on selected element', function() {
+          var element = fixture('basic');
+          element.setAttribute('options', testOptions);
+          element._showOptions();
+          element._setSelected(data);
+          expect(element.selected).to.be.equal('1');
+          expect(element.display_options).to.be.equal('options-hide');
         });
       });
     </script>
