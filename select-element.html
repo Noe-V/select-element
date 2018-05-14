@@ -124,7 +124,7 @@ You can uso some mixins to modify base styles:
       /*
       * Private function to set selected value from options
       */
-      _setSelected: function(data, detail){
+      _setSelected: function(data){
         this.setAttribute('selected', data.model.item);
         this._showOptions();
         this.fire('value-change', this.selected);
