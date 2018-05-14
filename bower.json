@@ -2,7 +2,7 @@
   "name": "select-element",
   "description": "Cuetem select element",
   "main": "select-element.html",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.9.0"
   },
